@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
-public class GameScreen {
+import com.badlogic.gdx.ScreenAdapter;
 
+public class GameScreen extends ScreenAdapter{
+	private babyRocketGame baby
 }

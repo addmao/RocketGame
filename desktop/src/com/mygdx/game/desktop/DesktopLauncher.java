@@ -8,9 +8,11 @@ import com.mygdx.game.babyRocketGame;
 public class DesktopLauncher {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "Cute & Tiny Rocket :)";
-		config.width = 500;
-		config.height = 800;
+		config.width = 650;
+		config.height = 650;
 		new LwjglApplication(new babyRocketGame(), config);
 	}
+	
+	
+	
 }
