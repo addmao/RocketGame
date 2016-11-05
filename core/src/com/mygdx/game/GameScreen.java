@@ -6,6 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter{
 	private BabyRocketGame babyRocket;
@@ -16,6 +17,8 @@ public class GameScreen extends ScreenAdapter{
 	private int x;
 	private int y;
 	
+	private TinyRocket tinyRocket;
+	
 	public GameScreen(BabyRocketGame babyRocket) {
 		this.babyRocket = babyRocket; 
 		tinyRocketImg = new Texture("TinyRocket.png");
@@ -23,8 +26,7 @@ public class GameScreen extends ScreenAdapter{
 		this.backgroundMoon = backgroundMoon;
 		backgroundMoonImg = new Texture("moon_background.png");
 	
-		x = 100;
-		y = 100;
+		tinyRocket = new TinyRocket(100, 100);
 	}
 
 	@Override
@@ -35,25 +37,26 @@ public class GameScreen extends ScreenAdapter{
 		SpriteBatch batch = babyRocket.batch;
 		batch.begin();
 		batch.draw(backgroundMoonImg, 0, 0);
-		batch.draw(tinyRocketImg, x, y);
+		Vector2 pos = tinyRocket.getPosition();
+		batch.draw(tinyRocketImg, pos.x, pos.y);
 		batch.end();
 	}
 	
 	public void update(float delta) {
-		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			x -= 10;
+		if(Gdx.input.isKeyPressed(Keys.UP)) {
+			tinyRocket.move(TinyRocket.DIRECTION_UP);
 		}
 		
 		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			x += 10;
-		}
-		
-		if(Gdx.input.isKeyPressed(Keys.UP)) {
-			y += 10;
+			tinyRocket.move(TinyRocket.DIRECTION_RIGHT);
 		}
 		
 		if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-			y -= 10;
+			tinyRocket.move(TinyRocket.DIRECTION_DOWN);
+		}
+		
+		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+			tinyRocket.move(TinyRocket.DIRECTION_LEFT);
 		}
 	}
 }
