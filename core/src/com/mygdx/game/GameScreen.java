@@ -6,18 +6,26 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScreen extends ScreenAdapter{
 	private BabyRocketGame babyRocket;
-	private Texture babyRocketImg;
+	private BabyRocketGame backgroundMoon; 
+	
+	private Texture backgroundMoonImg;
+	private Texture tinyRocketImg;
 	
 	public GameScreen(BabyRocketGame babyRocket) {
-		this.babyRocket = babyRocket;
-		babyRocketImg = new Texture("moon_background.png");
+		this.babyRocket = babyRocket; 
+		tinyRocketImg = new Texture("TinyRocket.png");
+		
+		this.backgroundMoon = backgroundMoon;
+		backgroundMoonImg = new Texture("moon_background.png");
+	
 	}
 
 	@Override
 	public void render(float delta) {
 		SpriteBatch batch = babyRocket.batch;
 		batch.begin();
-		batch.draw(babyRocketImg, 0, 0);
+		batch.draw(backgroundMoonImg, 0, 0);
+		batch.draw(tinyRocketImg, 100, 50);
 		batch.end();
 	}
 }
